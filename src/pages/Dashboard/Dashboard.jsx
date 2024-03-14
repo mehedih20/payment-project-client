@@ -1,4 +1,4 @@
-import "./Dashboard.css"
+import "./Dashboard.css";
 import Card from "./components/Card";
 import MainCard from "./components/MainCard";
 import { Modal } from "./components/Modal";
@@ -46,4 +46,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard
+export default Dashboard;
