@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 import { MdEdit } from "react-icons/md";
 
-const ProfileImageSection = ({ ProfileImage, handleEdit }) => {
+const ProfileImageSection = ({ profileImage, handleEdit }) => {
   return (
     <div className="pt-20 pr-14 border-r-4 relative">
       <div>
         <img
-          src={ProfileImage}
+          src={profileImage}
           alt="profile"
-          className="rounded-full w-[18rem] h-[18rem] border-8 border-gray-300 shadow-lg "
+          className="rounded-full w-[18rem] h-[18rem] border-8 border-gray-300 shadow-lg p-5"
         />
       </div>
 

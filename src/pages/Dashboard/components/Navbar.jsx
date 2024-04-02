@@ -17,7 +17,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center">
-          <div className="text-xl font-semibold mr-3">Balance</div>
+          <div className="text-xl font-semibold mr-3">Manage</div>
 
           <div className="bg h-14 w-14 rounded-full bg-amber-400 flex items-center justify-center mr-3">
             <div>

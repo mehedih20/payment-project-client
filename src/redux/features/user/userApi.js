@@ -16,6 +16,13 @@ const userApi = baseApi.injectEndpoints({
         body: registerData,
       }),
     }),
+    getBalance: builder.query({
+      query: (email) => ({
+        url: `/api/get-balance/${email}`,
+        method: "GET",
+      }),
+      providesTags: ["balance"],
+    }),
     // getAllUser: builder.query({
     //   query: () => ({
     //     url: "/users",
@@ -26,4 +33,5 @@ const userApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = userApi;
+export const { useLoginMutation, useRegisterMutation, useGetBalanceQuery } =
+  userApi;

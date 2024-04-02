@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import MinCard from "./MinCard";
 
 const Card = ({ modalHandler, setHeading, setLogo }) => {
@@ -24,20 +25,20 @@ const Card = ({ modalHandler, setHeading, setLogo }) => {
       <div
         onClick={() => {
           modalHandler();
-          setHeading("Pay Bill");
+          setHeading("Make Payment");
           setLogo(3);
         }}
       >
-        <MinCard text={"Pay Bill"} cardNo={3} />
+        <MinCard text={"Make Payment"} cardNo={3} />
       </div>
       <div
         onClick={() => {
           modalHandler();
-          setHeading("Invest");
+          setHeading("Request Loan");
           setLogo(4);
         }}
       >
-        <MinCard text={"Invest"} cardNo={4} />
+        <MinCard text={"Request Loan"} cardNo={4} />
       </div>
     </div>
   );

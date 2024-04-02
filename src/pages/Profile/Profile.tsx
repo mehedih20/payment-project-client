@@ -1,15 +1,17 @@
-import React from "react"
-import "./Profile.css"
+import React from "react";
+import "./Profile.css";
 import ProfileImageSection from "./components/ProfileImageSection";
 import ProfileModal from "./components/ProfileModal";
 import { CgProfile } from "react-icons/cg";
-import ProfileImage from "../../assets/profile-img.jpg";
 import ProfileDesc from "./components/ProfileDesc";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const [edit, setEdit] = useState(false);
+  const { userData } = useSelector((state) => state.user);
+  const { accountNumber, fullName, email, photoUrl } = userData;
 
   const handleEdit = () => {
     setEdit(!edit);
@@ -42,7 +44,7 @@ const Profile = () => {
         <div className="flex items-center justify-center">
           <div className="">
             <ProfileImageSection
-              ProfileImage={ProfileImage}
+              profileImage={photoUrl}
               handleEdit={handleEdit}
             />
           </div>
@@ -50,9 +52,9 @@ const Profile = () => {
 
         <div className="col-span-2">
           <ProfileDesc
-            name={"John De"}
-            mail={"john@gmail.com"}
-            contact={"983747343"}
+            name={fullName}
+            mail={email}
+            contact={accountNumber}
             address={"New York, USA"}
           />
         </div>
@@ -63,4 +65,4 @@ const Profile = () => {
   );
 };
 
-export default Profile
+export default Profile;

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useRef, useState } from "react";
 import "./AuthModal.css";
 import Webcam from "react-webcam";
@@ -5,14 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import {
   logout,
-  setUserVerified,
   takeUserPhotoToggle,
 } from "../../../redux/features/user/userSlice";
+import { ImCross } from "react-icons/im";
 import { toast } from "sonner";
+import { dataURItoBlob } from "../../../utils/authModal.utils";
 
-const AuthModal = () => {
+const AuthModal = ({ authFunction, env = "", photoUrl = "" }) => {
   const { takingUserPhoto, userData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
+  const handleCancelModal = () => {
+    dispatch(takeUserPhotoToggle());
+  };
 
   const webcamRef = useRef(null);
   const [capturedImage, setCapturedImage] = useState(null);
@@ -24,20 +30,14 @@ const AuthModal = () => {
     return blob;
   };
 
-  const dataURItoBlob = (dataURI) => {
-    const byteString = atob(dataURI.split(",")[1]);
-    const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
-    const ab = new ArrayBuffer(byteString.length);
-    const ia = new Uint8Array(ab);
-    for (let i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([ab], { type: mimeString });
-  };
-
   const handleSubmit = async () => {
     const formData = new FormData();
-    const response = await fetch(userData.photoUrl);
+    let response;
+    if (!userData) {
+      response = await fetch(photoUrl);
+    } else {
+      response = await fetch(userData.photoUrl);
+    }
     const referenceBlob = await response.blob();
     const liveBlob = await capture();
     const toastId = toast.loading("Verifying user...");
@@ -52,12 +52,14 @@ const AuthModal = () => {
           const { identical } = response.data;
           if (identical === "Comparison failed") {
             toast.error("User not verified!", { id: toastId });
-            dispatch(logout());
+            if (env === "logging") {
+              dispatch(logout());
+            }
             dispatch(takeUserPhotoToggle());
             return;
           }
-          dispatch(setUserVerified(response.data));
           if (response.data.identical === true) {
+            authFunction();
             toast.success("User verified!", { id: toastId });
           } else {
             toast.error("User not verified!", { id: toastId });
@@ -72,24 +74,47 @@ const AuthModal = () => {
   return (
     <div className={`auth-modal-container ${!takingUserPhoto && "hidden"}`}>
       <div className="auth-modal">
-        <Webcam
-          audio={false}
-          ref={webcamRef}
-          screenshotFormat="image/jpeg"
-          style={{ width: "500" }}
-        />
-        <button onClick={capture}>Capture Photo</button>
-        {capturedImage && (
-          <div>
-            <h2>Captured Photo:</h2>
-            <img
-              src={URL.createObjectURL(capturedImage)}
-              alt="Captured"
-              width="100"
-            />
+        <button
+          onClick={handleCancelModal}
+          className="auth-cancel-button bg-slate-400 hover:bg-slate-600 duration-200"
+        >
+          {" "}
+          <ImCross />{" "}
+        </button>
+        <div className="webcam">
+          <Webcam
+            audio={false}
+            ref={webcamRef}
+            screenshotFormat="image/jpeg"
+            style={{ width: "500" }}
+          />
+          {capturedImage && (
+            <div className="captured-webcam">
+              <h2 className=" font-semibold text-gray-500 mb-1">
+                Captured Photo:
+              </h2>
+              <img
+                src={URL.createObjectURL(capturedImage)}
+                alt="Captured"
+                width="100"
+              />
+            </div>
+          )}
+          <div className="auth-func-btns">
+            <button
+              className=" bg-blue-900 hover:bg-gray-800 text-white duration-200"
+              onClick={capture}
+            >
+              Capture
+            </button>
+            <button
+              className=" bg-red-500 hover:bg-red-700 text-white duration-200"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
           </div>
-        )}
-        <button onClick={handleSubmit}>Submit</button>
+        </div>
       </div>
     </div>
   );

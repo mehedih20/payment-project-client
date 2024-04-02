@@ -1,16 +1,17 @@
 .auth-modal-container {
   position: fixed;
+  z-index: 100;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: #333333c1;
+  background-color: #2a2a2aeb;
 }
 
 .auth-modal {
   position: absolute;
-  width: 1000px;
-  height: 700px;
+  width: 700px;
+  height: 800px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -18,24 +19,41 @@
   border-radius: 0.5rem;
 }
 
-.auth-button {
+.auth-cancel-button {
   position: absolute;
-  right: 20px;
-  top: 20px;
-  background: #d1d1d1;
+  right: 10px;
+  top: 10px;
   padding: 10px;
   border-radius: 5px;
   display: flex;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .webcam {
   position: absolute;
-  top: 50%;
+  top: 3.5rem;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
+  transform: translateX(-50%);
+  width: 600px;
+}
+
+.auth-func-btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.auth-func-btns button {
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.captured-webcam {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
 }
 
 /* .capture-button {

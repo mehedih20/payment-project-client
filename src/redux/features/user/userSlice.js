@@ -4,7 +4,6 @@ const initialState = {
   userData: null,
   userToken: null,
   takingUserPhoto: false,
-  userVerified: false,
 };
 
 const userSlice = createSlice({
@@ -16,25 +15,18 @@ const userSlice = createSlice({
       state.userData = user;
       state.userToken = token;
       state.takingUserPhoto = false;
-      state.userVerified = false;
     },
     logout: (state) => {
       state.userData = null;
       state.userToken = null;
       state.takingUserPhoto = false;
-      state.userVerified = false;
     },
     takeUserPhotoToggle: (state) => {
       state.takingUserPhoto = !state.takingUserPhoto;
     },
-    setUserVerified: (state, action) => {
-      const { identical } = action.payload;
-      state.userVerified = identical;
-    },
   },
 });
 
-export const { setUser, logout, takeUserPhotoToggle, setUserVerified } =
-  userSlice.actions;
+export const { setUser, logout, takeUserPhotoToggle } = userSlice.actions;
 
 export default userSlice.reducer;
