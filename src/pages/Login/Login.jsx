@@ -22,6 +22,7 @@ const Login = () => {
   const handleUser = async () => {
     const { userData, token } = tempUser;
     dispatch(setUser({ user: userData, token }));
+    dispatch(takeUserPhotoToggle());
     navigate(from);
   };
 

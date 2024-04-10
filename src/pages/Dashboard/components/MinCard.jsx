@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { GiReceiveMoney } from "react-icons/gi";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { FaMoneyBill1Wave } from "react-icons/fa6";

@@ -61,7 +61,7 @@ export const Modal = ({ modalHandler, heading, logo }) => {
 
   return (
     <>
-      <AuthModal authFunction={() => handleTransaction()} />
+      <AuthModal authFunction={handleTransaction} />
       <div className="fixed inset-0 bg-opacity-30 backdrop-blur-sm flex flex-col justify-center items-center">
         <div className=" gap-3 flex flex-col">
           <button onClick={modalHandler} className="place-self-end">

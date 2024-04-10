@@ -17,7 +17,7 @@ const TransactionHistory = () => {
   const { data } = useGetTransactionsHistoryQuery(userData.username);
 
   return (
-    <div className="bg-gray-100 mt-10 mr-8 border-transparent shadow-xl p-4 rounded-xl">
+    <div className="bg-gray-100 mt-10 mr-8 border-transparent shadow-xl p-4 rounded-xl h-5/6 overflow-y-scroll">
       <div className="text-2xl font-semibold">Transaction history</div>
 
       <div className="flex justify-around pt-4">
@@ -49,40 +49,6 @@ const TransactionHistory = () => {
             />
           );
         })}
-
-      {/* <TransactionData
-        receiver={"Amazon"}
-        type={"Shopping"}
-        date={"07/03/2024"}
-        amount={"$200"}
-      />
-      <TransactionData
-        receiver={"Netflix"}
-        type={"Subscription"}
-        date={"07/03/2024"}
-        amount={"$200"}
-      />
-
-      <TransactionData
-        receiver={"Grocerry"}
-        type={"Food"}
-        date={"07/03/2024"}
-        amount={"$200"}
-      />
-
-      <TransactionData
-        receiver={"Medicine"}
-        type={"Health"}
-        date={"07/03/2024"}
-        amount={"$200"}
-      />
-
-      <TransactionData
-        receiver={"Gym"}
-        type={"Sports"}
-        date={"07/03/2024"}
-        amount={"$200"}
-      /> */}
     </div>
   );
 };

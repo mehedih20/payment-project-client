@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 const TransactionData = ({ receiver, type, date, amount }) => {
   let typeColor = "";
   if (type === "add-money") {
@@ -16,9 +18,7 @@ const TransactionData = ({ receiver, type, date, amount }) => {
         <p className="text-black text-lg text-left pb-2">{receiver}</p>
       </div>
       <div>
-        <p className={`${typeColor} text-gray-400 text-lg text-left pb-2 pl-2`}>
-          {type}
-        </p>
+        <p className={`${typeColor} text-lg text-left pb-2 pl-2`}>{type}</p>
       </div>
       <div>
         <p className="text-gray-400 text-lg pb-2">{date}</p>

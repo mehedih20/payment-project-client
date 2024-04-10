@@ -16,12 +16,12 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="container mx-auto grid grid-cols-2 grid-rows-7 px-7 pt-6 pb-10 min-h-screen">
+    <div className="container mx-auto grid grid-rows-3 grid-cols-2 px-7 pt-6 pb-10 min-h-screen">
       <div className="col-span-2 row-span-1">
         <Navbar />
       </div>
 
-      <div className="col-span-2 row-span-3">
+      <div className="col-span-2 row-span-2 -mt-20 mb-20">
         <MainCard />
       </div>
 
